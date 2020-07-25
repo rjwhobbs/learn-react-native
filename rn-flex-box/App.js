@@ -5,14 +5,7 @@ import { useState } from 'react';
 
 export default function App() {
   return (
-		<View 
-			style={{ 
-				padding: 50, 
-				flexDirection: 'row',
-				width: '80%',
-				height: 300,
-				justifyContent: 'space-around',
-				alignItems: 'stretch' }}>
+		<View style={styles.container}>
       <View
         style={{
 					flex: 1,
@@ -45,3 +38,14 @@ export default function App() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+	container: {
+		padding: 50, 
+		flexDirection: 'row',
+		width: '80%',
+		height: 300,
+		justifyContent: 'space-around',
+		alignItems: 'stretch'
+	}
+});
