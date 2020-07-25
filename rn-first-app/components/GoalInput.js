@@ -9,6 +9,16 @@ const GoalInput = (props) => {
 		setInputText(input);
 	};
 
+	const handlePress = () => {
+		props.handleAdd(inputText);
+		setInputText('');
+	}
+	
+	const handleCancel = () => {
+		props.handleCancel();
+		setInputText('');
+	}
+
 	return (
 		<Modal 
 			visible={props.show}
@@ -21,10 +31,17 @@ const GoalInput = (props) => {
 					onChangeText={handleInput}
 					value={inputText}
 				/>
-				<Button 
-					title="ADD" 
-					onPress={() => props.handleAdd(inputText)}
-				/>
+				<View style={styles.buttonCon}>
+					<Button 
+						title="ADD" 
+						onPress={handlePress}
+					/>
+					<Button 
+						title="CANCEL"
+						onPress={handleCancel}
+						color="red"
+					/>
+				</View>
 			</View>
 		</Modal>
 	);
@@ -33,6 +50,11 @@ const GoalInput = (props) => {
 export default GoalInput;
 
 const styles = StyleSheet.create({
+	buttonCon: {
+		flexDirection: 'row', // the view container takes the width of its children hence space-between wont work without a set width
+		width: '60%',
+		justifyContent: 'space-around'
+	},
 	input: {
 		borderBottomColor: 'black',
 		borderBottomWidth: 1,

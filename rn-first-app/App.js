@@ -19,6 +19,10 @@ export default function App() {
 		setShow(false);
 	};
 
+	const cancelAdd = () => {
+		setShow(false);
+	}
+
 	const delItem = (itemId) => {
 		setInputList(prevInputList => {
 			return prevInputList.filter(item => item.id !== itemId);
@@ -36,7 +40,8 @@ export default function App() {
 				onPress={handleShow}/>
 			<GoalInput
 				show={show} 
-				handleAdd={handleAdd} />
+				handleAdd={handleAdd} 
+				handleCancel={cancelAdd}/>
 			<FlatList
 				data={inputList}
 				renderItem={itemData => (
