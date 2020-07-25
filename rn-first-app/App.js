@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
 import { useState } from 'react';
 
 export default function App() {
@@ -46,11 +46,15 @@ export default function App() {
 					onPress={handleAdd}
 				/>
 			</View>
-			<ScrollView>
-				<View>
-					{listItems()}
-				</View>
-			</ScrollView>
+				<FlatList
+					keyExtractor={(item, index) => item + index} // By default flat list can look for an id or key val
+					data={inputList}
+					renderItem={itemData => (
+						<View style={styles.listItems} >
+							<Text >{itemData.item}</Text>
+						</View> 
+					)}
+				/>
     </View>
 	);
 }
