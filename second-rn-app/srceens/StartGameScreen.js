@@ -6,7 +6,7 @@ const StartGameScreen = () => {
 		<View style={styles.screen}> 
 			<Text style={styles.title}>Start</Text>
 			<View style={styles.inputCon}>
-				<Text>Select a number</Text>
+				<Text style={styles.inputText}>Select a number</Text>
 				<TextInput />
 				<View style={styles.buttonCon}>
 					<Button 
@@ -37,7 +37,15 @@ const styles = StyleSheet.create({
 	inputCon: {
 		width: 300,
 		maxWidth: '80%',
-		alignItems: 'center'
+		alignItems: 'center',
+		shadowColor: '#4f7790',
+		shadowOffset: {width: 0, height: 2},
+		shadowRadius: 10,
+		shadowOpacity: 0.5,
+		backgroundColor: 'white',  //Background defualts to transparent
+		elevation: 5, // Only android
+		padding: 10,
+		borderRadius: 5
 	},
 	buttonCon: {
 		flexDirection: 'row',
