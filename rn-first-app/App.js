@@ -7,6 +7,7 @@ import GoalInput from './components/GoalInput';
 
 export default function App() {
 	const [inputList, setInputList] = useState([]);
+	const [show, setShow] = useState(false);
 
 	const handleAdd = (inputText) => {
 		setInputList(prevInputList => (
@@ -15,6 +16,7 @@ export default function App() {
 				val: inputText
 			}]
 		));
+		setShow(false);
 	};
 
 	const delItem = (itemId) => {
@@ -23,9 +25,18 @@ export default function App() {
 		});
 	}
 
+	const handleShow = () => {
+		setShow(true);
+	}
+
   return (
     <View style={styles.con}>
-			<GoalInput handleAdd={handleAdd} />
+			<Button 
+				title="Add"
+				onPress={handleShow}/>
+			<GoalInput
+				show={show} 
+				handleAdd={handleAdd} />
 			<FlatList
 				data={inputList}
 				renderItem={itemData => (
