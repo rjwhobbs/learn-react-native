@@ -2,59 +2,28 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
 import { useState } from 'react';
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
 
 export default function App() {
-	const [inputText, setInputText] = useState('');
 	const [inputList, setInputList] = useState([]);
 
-	const handleInput = (input) => {
-		setInputText(input);
-	};
-
-	const handleAdd = () => {
+	const handleAdd = (inputText) => {
 		setInputList(prevInputList => (
 			[...prevInputList, inputText]
 		));
-		setInputText('');
 	};
-
-	const listItems = () => {
-		let items = inputList.map((item, index) => {
-			return (
-				<View
-					key={item + index} 
-					style={styles.listItems}
-				>
-					<Text >{item}</Text>
-				</View> 
-			)
-		});
-	return (<>{items}</>);
-	}
 
   return (
     <View style={styles.con}>
-			<View style={styles.row}>
-				<TextInput 
-					style={styles.input}
-					placeholder="course goals"
-					onChangeText={handleInput} // So we only pass the function to be used, otherwise it actually gets called, eg f() instead of f?
-					value={inputText}
-				/>
-				<Button 
-					title="ADD" 
-					onPress={handleAdd}
-				/>
-			</View>
-				<FlatList
-					keyExtractor={(item, index) => item + index} // By default flat list can look for an id or key val
-					data={inputList}
-					renderItem={itemData => (
-						<View style={styles.listItems} >
-							<Text >{itemData.item}</Text>
-						</View> 
-					)}
-				/>
+			<GoalInput handleAdd={handleAdd} />
+			<FlatList
+				keyExtractor={(item, index) => item + index} // By default flat list can look for an id or key val
+				data={inputList}
+				renderItem={itemData => (
+					<GoalItem item={itemData.item} />	
+				)}
+			/>
     </View>
 	);
 }
@@ -63,22 +32,5 @@ const styles = StyleSheet.create({
 	con: {
 		padding: 30
 	},
-	input: {
-		borderBottomColor: 'black',
-		borderBottomWidth: 1,
-		padding: 5,
-		width: '80%'
-	},
-	row: {
-		flexDirection: 'row', 
-		justifyContent: 'space-between',	// Align is for opposite of main axis
-		alignItems: 'center'
-	},
-	listItems: {
-		padding: 10,
-		backgroundColor: '#ccc',
-		borderColor: 'black',
-		borderWidth: 1
-	}
 });
 
