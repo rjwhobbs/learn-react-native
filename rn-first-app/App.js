@@ -11,7 +11,7 @@ export default function App() {
 	const handleAdd = (inputText) => {
 		setInputList(prevInputList => (
 			[...prevInputList, {
-				id: Math.random().toString + inputText, 
+				id: Math.random().toString(), 
 				val: inputText
 			}]
 		));
