@@ -10,18 +10,29 @@ export default function App() {
 
 	const handleAdd = (inputText) => {
 		setInputList(prevInputList => (
-			[...prevInputList, inputText]
+			[...prevInputList, {
+				id: Math.random().toString + inputText, 
+				val: inputText
+			}]
 		));
 	};
+
+	const delItem = (itemId) => {
+		setInputList(prevInputList => {
+			return prevInputList.filter(item => item.id !== itemId);
+		});
+	}
 
   return (
     <View style={styles.con}>
 			<GoalInput handleAdd={handleAdd} />
 			<FlatList
-				keyExtractor={(item, index) => item + index} // By default flat list can look for an id or key val
 				data={inputList}
 				renderItem={itemData => (
-					<GoalItem item={itemData.item} />	
+					<GoalItem 
+						item={itemData.item.val} 
+						handleDelete={delItem.bind(this, itemData.item.id)}
+					/>	
 				)}
 			/>
     </View>
