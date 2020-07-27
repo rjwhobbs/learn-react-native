@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
 	View, 
 	StyleSheet,
 	Text,
-	Button
+	Button,
+	Alert
 } from 'react-native';
 import NumberCon from './NumberCon';
 import Card from './Card';
@@ -21,6 +22,25 @@ const genRandBetween = (min, max, exclude) => {
 
 const GameScreen = (props) => {
 	const [guess, setGuess] = useState(genRandBetween(1, 100, props.userNum));
+	const currLow = useRef(1); // the benifit of doing this is that the comp doesn't rerender when the val is changed.
+	const currHigh = useRef(100);
+
+	const nextGuessHandler = (direction) => {
+		if ((direction === 'lower' && guess < props.userNum) ||
+				(direction === 'greater' && guess > props.userNum)) {
+			Alert.alert(
+				'Mmm...', 
+				'your hint seems to be off', 
+				[{text: 'Try again', style: 'cancel'}]
+			);
+
+			return ;
+		}
+
+		if (direction === 'lower') {
+			currHigh.current = guess;
+		}
+	}
 
 	return (
 		<View style={styles.screen}>
@@ -29,11 +49,11 @@ const GameScreen = (props) => {
 			<Card style={styles.buttonCon}>
 				<Button 
 					title='LOWER'
-					onPress={() => {}}
+					onPress={() => nextGuessHandler('lower')}
 				/>
 				<Button 
 					title='GREATER'
-					onPress={() => {}}
+					onPress={() => nextGuessHandler('greater')}
 				/>
 			</Card>
 		</View>
