@@ -32,7 +32,7 @@ const GameScreen = (props) => {
 		if (guess === userNum) {
 			onGameOver(rounds);
 		}
-	}, [guess, userNum, onGameOver]); // This will only rerun if these consts change, not if props changes.
+	}, [guess, userNum, onGameOver]); // This will only rerun if these consts change, not if props changes. vid 70
 
 	const nextGuessHandler = (direction) => {
 		if ((direction === 'lower' && guess < props.userNum) ||

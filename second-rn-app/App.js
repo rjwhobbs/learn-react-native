@@ -1,3 +1,4 @@
+import * as Font from 'expo-font'
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
@@ -6,6 +7,13 @@ import Header from './components/Header';
 import StartGameScreen from './srceens/StartGameScreen';
 import GameScreen from './components/GameScreen';
 import GameOverScreen from './components/GameOverScreen';
+
+const getFonts = () => {
+	Font.loadAsync({
+		'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+		'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+	})
+}
 
 export default function App() {
 	const [userNum, setUserNum] = useState();
