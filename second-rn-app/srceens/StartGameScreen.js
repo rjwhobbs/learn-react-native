@@ -14,7 +14,7 @@ import colours from '../constants/colours';
 import Input from '../components/Input';
 import NumberCon from '../components/NumberCon';
 
-const StartGameScreen = () => {
+const StartGameScreen = (props) => {
 	const [userInput, setUserInput] = useState('');
 	const [confirmed, setConfirmed] = useState(false);
 	const [selectedNum, setSelectedNum] = useState(0);
@@ -35,7 +35,7 @@ const StartGameScreen = () => {
 		setSelectedNum(num);
 		setConfirmed(true);
 		setUserInput('');
-
+		Keyboard.dismiss();
 	};
 
 	const resetHandler = () => {
@@ -48,13 +48,14 @@ const StartGameScreen = () => {
 	if (confirmed) {
 		confirmedOutPut = (
 			<Card style={styles.confirmCon}>
-				<Text>You selected</Text>
+				<Text style={styles.confirmText}>You selected</Text>
 				<NumberCon>
 					{selectedNum}	
 				</NumberCon>
 				<Button 
 					title="START GAME"
 					color={colours.accent}
+					onPress={() => props.onStartGame(selectedNum)}
 				/>
 			</Card>
 		);
@@ -136,6 +137,10 @@ const styles = StyleSheet.create({
 	confirmCon: {
 		marginTop: 20,
 		alignItems: 'center' // this is default stretch
+	},
+	confirmText: {
+		color: colours.accent,
+		fontWeight: 'bold'
 	}
 })
 
