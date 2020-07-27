@@ -6,9 +6,33 @@ import Input from '../components/Input';
 
 const StartGameScreen = () => {
 	const [userInput, setUserInput] = useState('');
+	const [confirmed, setConfirmed] = useState(false);
+	const [selectedNum, setSelectedNum] = useState(0);
 
 	const inputHandler = (input) => {
 		setUserInput(input.replace(/[^0-9]/g, ''));
+	};
+
+	const confirmHandler = () => {
+		const num = parseInt(userInput);
+		if (num === NaN || num <= 0 || num >= 100) {
+			return ;
+		}
+		setSelectedNum(num);
+		setConfirmed(true);
+		setUserInput('');
+
+	};
+
+	const resetHandler = () => {
+		setUserInput('');
+		setConfirmed(false);
+	};
+
+	let confirmedOutPut = null;
+
+	if (confirmed) {
+		confirmedOutPut = <Text>Chosen number: {selectedNum}</Text>
 	}
 
 	return (
@@ -31,16 +55,19 @@ const StartGameScreen = () => {
 							<Button 
 								title="Reset"
 								color={colours.accent}
+								onPress={resetHandler}
 							/>
 						</View>
 						<View style={styles.button}>
 							<Button 
 								title="Confirm"
 								color={colours.primary}
+								onPress={confirmHandler}
 							/>
 						</View>
 					</View>
 				</Card>
+				{confirmedOutPut}
 			</View>
 		</TouchableWithoutFeedback>
 	);
