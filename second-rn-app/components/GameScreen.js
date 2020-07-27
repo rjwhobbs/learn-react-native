@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
 	View, 
 	StyleSheet,
@@ -21,9 +21,18 @@ const genRandBetween = (min, max, exclude) => {
 }
 
 const GameScreen = (props) => {
-	const [guess, setGuess] = useState(genRandBetween(1, 100, props.userNum));
+	const {userNum, onGameOver} = props;
+	const [guess, setGuess] = useState(genRandBetween(1, 100, userNum));
+	const [rounds, setRounds] = useState(0);
 	const currLow = useRef(1); // the benifit of doing this is that the comp doesn't rerender when the val is changed.
 	const currHigh = useRef(100);
+
+
+	useEffect(() => {
+		if (guess === userNum) {
+			onGameOver(rounds);
+		}
+	}, [guess, userNum, onGameOver]); // This will only rerun if these consts change, not if props changes.
 
 	const nextGuessHandler = (direction) => {
 		if ((direction === 'lower' && guess < props.userNum) ||
@@ -39,7 +48,13 @@ const GameScreen = (props) => {
 
 		if (direction === 'lower') {
 			currHigh.current = guess;
+		} else if (direction === 'greater') {
+			currLow.current = guess;
 		}
+
+		const nextNum = genRandBetween(currLow.current, currHigh.current, guess);
+		setGuess(nextNum);
+		setRounds(prevRounds => prevRounds + 1);
 	}
 
 	return (
