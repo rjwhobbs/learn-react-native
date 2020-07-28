@@ -4,12 +4,15 @@ import {
 	StyleSheet,
 	Text,
 	Button,
-	Alert
+	Alert,
+	ScrollView
 } from 'react-native';
 import NumberCon from './NumberCon';
 import Card from './Card';
 import {Ionicons} from '@expo/vector-icons'
 import MainButton from './MainButton';
+import c from '../constants/colours';
+import s from '../constants/styles';
 
 const genRandBetween = (min, max, exclude) => {
 	min = Math.ceil(min); // rounds up
@@ -22,17 +25,30 @@ const genRandBetween = (min, max, exclude) => {
 	}
 }
 
+const renderList = (value, index) => {
+	return (
+		<View 
+			key={value}
+			style={styles.listItem}
+		>
+			<Text style={{...s.reg18}}>{index}</Text>
+			<Text style={{...s.reg18}}>{value}</Text>
+		</View>
+	);
+}
+
 const GameScreen = (props) => {
+	const initialGuess = genRandBetween(1, 100, userNum);
 	const {userNum, onGameOver} = props;
-	const [guess, setGuess] = useState(genRandBetween(1, 100, userNum));
-	const [rounds, setRounds] = useState(0);
+	const [guess, setGuess] = useState(initialGuess);
+	const [pastGuessArr, setPastGuessArr] = useState([initialGuess]);
 	const currLow = useRef(1); // the benifit of doing this is that the comp doesn't rerender when the val is changed.
 	const currHigh = useRef(100);
 
 
 	useEffect(() => {
 		if (guess === userNum) {
-			onGameOver(rounds);
+			onGameOver(pastGuessArr.length);
 		}
 	}, [guess, userNum, onGameOver]); // This will only rerun if these consts change, not if props changes. vid 70
 
@@ -51,12 +67,13 @@ const GameScreen = (props) => {
 		if (direction === 'lower') {
 			currHigh.current = guess;
 		} else if (direction === 'greater') {
-			currLow.current = guess;
+			currLow.current = guess + 1;
 		}
 
 		const nextNum = genRandBetween(currLow.current, currHigh.current, guess);
 		setGuess(nextNum);
-		setRounds(prevRounds => prevRounds + 1);
+		// setRounds(prevRounds => prevRounds + 1);
+		setPastGuessArr(prevPastGuess => [nextNum, ...prevPastGuess])
 	}
 
 	return (
@@ -71,6 +88,13 @@ const GameScreen = (props) => {
 					<Ionicons name="md-add" size={24} color="white"/>
 				</MainButton>
 			</Card>
+			<View style={styles.list}>
+				<ScrollView>
+					{pastGuessArr.map((guess, index) => (
+						renderList(guess, pastGuessArr.length - index)
+					))}
+				</ScrollView>
+			</View>
 		</View>
 	);
 }
@@ -87,6 +111,19 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		width: 300,
 		maxWidth: '80%'
+	},
+	listItem: {
+		borderColor: c.secondary,
+		padding: 15,
+		marginVertical: 10,
+		backgroundColor: '#fff',
+		borderWidth: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-around'
+	},
+	list: {
+		flex: 1, // Need to add flex 1 to view with nested scroll for android
+		width: '80%', // Add Styles to view not scrollview
 	}
 });
 
