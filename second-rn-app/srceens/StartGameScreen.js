@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	title: {
+		fontFamily: 'open-sans-bold',
 		fontSize: 20,
 		marginVertical: 10,
 		color: colours.primary,
@@ -124,11 +125,10 @@ const styles = StyleSheet.create({
 	},
 	inputText: {
 		color: colours.primary,
-		fontWeight: 'bold'
+		fontFamily: 'open-sans-bold',
 	},
 	button: {
 		width: 90,
-
 	},
 	input: {
 		width: 50,

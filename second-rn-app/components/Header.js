@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	title: {
+		fontFamily: 'open-sans-bold',
 		color: '#fff',
 		fontSize: 24
 	}

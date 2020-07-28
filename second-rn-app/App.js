@@ -1,4 +1,5 @@
-import * as Font from 'expo-font'
+import * as Font from 'expo-font';
+import {AppLoading} from 'expo';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
@@ -9,7 +10,7 @@ import GameScreen from './components/GameScreen';
 import GameOverScreen from './components/GameOverScreen';
 
 const getFonts = () => {
-	Font.loadAsync({
+	return Font.loadAsync({
 		'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
 		'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
 	})
@@ -18,6 +19,17 @@ const getFonts = () => {
 export default function App() {
 	const [userNum, setUserNum] = useState();
 	const [numRounds, setNumRounds] = useState(0);
+	const [dataLoaded, setDataLoaded] = useState(false);
+
+	if (!dataLoaded) {
+		return (
+			<AppLoading 
+				startAsync={getFonts}
+				onFinish={() => setDataLoaded(true)}
+				onError={(err) => console.log(err)}
+			/>
+		); //Has to be a function that returns a promise
+	}
 
 	const newGame = () => {
 		setNumRounds(0);
