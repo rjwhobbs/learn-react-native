@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import NumberCon from './NumberCon';
 import Card from './Card';
+import {Ionicons} from '@expo/vector-icons'
 import MainButton from './MainButton';
 
 const genRandBetween = (min, max, exclude) => {
@@ -63,14 +64,12 @@ const GameScreen = (props) => {
 			<Text>Opponent's guess</Text>
 			<NumberCon>{guess}</NumberCon>
 			<Card style={styles.buttonCon}>
-				<Button 
-					title='LOWER'
-					onPress={() => nextGuessHandler('lower')}
-				/>
-				<Button 
-					title='GREATER'
-					onPress={() => nextGuessHandler('greater')}
-				/>
+				<MainButton onPress={() => nextGuessHandler('lower')}>
+					<Ionicons name="md-remove" size={24} color="white"/>
+				</MainButton>
+				<MainButton onPress={() => nextGuessHandler('greater')}>
+					<Ionicons name="md-add" size={24} color="white"/>
+				</MainButton>
 			</Card>
 		</View>
 	);
