@@ -5,7 +5,8 @@ import {
 	Text,
 	Button,
 	Alert,
-	ScrollView
+	ScrollView,
+	FlatList
 } from 'react-native';
 import NumberCon from './NumberCon';
 import Card from './Card';
@@ -25,14 +26,11 @@ const genRandBetween = (min, max, exclude) => {
 	}
 }
 
-const renderList = (value, index) => {
+const renderList = (listLength, itemData) => { // Here itemData is the default arg pasted by flatlist
 	return (
-		<View 
-			key={value}
-			style={styles.listItem}
-		>
-			<Text style={{...s.reg18}}>{index}</Text>
-			<Text style={{...s.reg18}}>{value}</Text>
+		<View style={styles.listItem}>
+			<Text style={{...s.reg18}}>{listLength - itemData.index}</Text>
+			<Text style={{...s.reg18}}>{itemData.item}</Text>
 		</View>
 	);
 }
@@ -41,7 +39,7 @@ const GameScreen = (props) => {
 	const initialGuess = genRandBetween(1, 100, userNum);
 	const {userNum, onGameOver} = props;
 	const [guess, setGuess] = useState(initialGuess);
-	const [pastGuessArr, setPastGuessArr] = useState([initialGuess]);
+	const [pastGuessArr, setPastGuessArr] = useState([initialGuess.toString()]);
 	const currLow = useRef(1); // the benifit of doing this is that the comp doesn't rerender when the val is changed.
 	const currHigh = useRef(100);
 
@@ -73,7 +71,7 @@ const GameScreen = (props) => {
 		const nextNum = genRandBetween(currLow.current, currHigh.current, guess);
 		setGuess(nextNum);
 		// setRounds(prevRounds => prevRounds + 1);
-		setPastGuessArr(prevPastGuess => [nextNum, ...prevPastGuess])
+		setPastGuessArr(prevPastGuess => [nextNum.toString(), ...prevPastGuess])
 	}
 
 	return (
@@ -89,11 +87,17 @@ const GameScreen = (props) => {
 				</MainButton>
 			</Card>
 			<View style={styles.listCon}>
-				<ScrollView contentContainerStyle={styles.list}>
+				{/* <ScrollView contentContainerStyle={styles.list}>
 					{pastGuessArr.map((guess, index) => (
 						renderList(guess, pastGuessArr.length - index)
 					))}
-				</ScrollView>
+				</ScrollView> */}
+				<FlatList 
+					keyExtractor={item => item}				
+					data={pastGuessArr}
+					renderItem={renderList.bind(this, pastGuessArr.length)}
+					contentContainerStyle={styles.list}
+				/>
 			</View>
 		</View>
 	);
@@ -115,20 +119,20 @@ const styles = StyleSheet.create({
 	listItem: {
 		borderColor: c.secondary,
 		padding: 15,
-		marginVertical: 10,
+		marginVertical: 10, 
 		backgroundColor: '#fff',
 		borderWidth: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		width: '60%'
+		width: '100%',
 	},
 	listCon: {
 		flex: 1, // Need to add flex 1 to view with nested scroll for android
-		width: '80%', // Add Styles to view not scrollview
+		width: '60%', // Add Styles to view not scrollview
 	},
 	list: {
 		flexGrow: 1, // to be able to take as much space but keeps normal behaviour
-		alignItems: 'center',
+		// alignItems: 'center',
 		justifyContent: 'flex-end'
 	}
 });
