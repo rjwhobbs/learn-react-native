@@ -10,7 +10,8 @@ import {
 		Alert 
 } from 'react-native'
 import Card from '../components/Card';
-import colours from '../constants/colours';
+import c from '../constants/colours';
+import s from '../constants/styles';
 import Input from '../components/Input';
 import NumberCon from '../components/NumberCon';
 
@@ -54,7 +55,7 @@ const StartGameScreen = (props) => {
 				</NumberCon>
 				<Button 
 					title="START GAME"
-					color={colours.accent}
+					color={c.accent}
 					onPress={() => props.onStartGame(selectedNum)}
 				/>
 			</Card>
@@ -64,7 +65,9 @@ const StartGameScreen = (props) => {
 	return (
 		<TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
 			<View style={styles.screen}> 
-				<Text style={styles.title}>Start</Text>
+				<Text style={{...styles.title, ...s.bold}}>
+					Start
+				</Text>
 				<Card style={styles.inputCon}>
 					<Text style={styles.inputText}>Select a number</Text>
 					<Input 
@@ -80,14 +83,14 @@ const StartGameScreen = (props) => {
 						<View style={styles.button}>
 							<Button 
 								title="Reset"
-								color={colours.accent}
+								color={c.accent}
 								onPress={resetHandler}
 							/>
 						</View>
 						<View style={styles.button}>
 							<Button 
 								title="Confirm"
-								color={colours.primary}
+								color={c.primary}
 								onPress={confirmHandler}
 							/>
 						</View>
@@ -106,10 +109,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	title: {
-		fontFamily: 'open-sans-bold',
 		fontSize: 20,
 		marginVertical: 10,
-		color: colours.primary,
+		color: c.primary,
 		paddingBottom: 20
 	},
 	inputCon: {
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 15
 	},
 	inputText: {
-		color: colours.primary,
+		color: c.primary,
 		fontFamily: 'open-sans-bold',
 	},
 	button: {
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center' // this is default stretch
 	},
 	confirmText: {
-		color: colours.accent,
+		color: c.accent,
 		fontWeight: 'bold'
 	}
 })

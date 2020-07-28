@@ -26,7 +26,7 @@ export default function App() {
 			<AppLoading 
 				startAsync={getFonts}
 				onFinish={() => setDataLoaded(true)}
-				onError={(err) => console.log(err)}
+				onError={(err) => console.log}
 			/>
 		); //Has to be a function that returns a promise
 	}
