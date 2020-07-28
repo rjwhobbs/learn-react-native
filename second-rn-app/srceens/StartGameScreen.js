@@ -7,7 +7,8 @@ import {
 		Button, 
 		TouchableWithoutFeedback, 
 		Keyboard,
-		Alert 
+		Alert,
+		Image 
 } from 'react-native'
 import Card from '../components/Card';
 import c from '../constants/colours';
