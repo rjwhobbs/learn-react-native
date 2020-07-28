@@ -9,6 +9,7 @@ import {
 	FlatList,
 	Dimensions
 } from 'react-native';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import NumberCon from './NumberCon';
 import Card from './Card';
 import {Ionicons} from '@expo/vector-icons'
@@ -37,6 +38,7 @@ const renderList = (listLength, itemData) => { // Here itemData is the default a
 }
 
 const GameScreen = (props) => {
+	// ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT); // Seems to work similar to Dimentions in that it probably has a listener etc
 	const initialGuess = genRandBetween(1, 100, userNum);
 	const {userNum, onGameOver} = props;
 	const [guess, setGuess] = useState(initialGuess);
