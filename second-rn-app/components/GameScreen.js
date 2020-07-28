@@ -41,9 +41,21 @@ const GameScreen = (props) => {
 	const {userNum, onGameOver} = props;
 	const [guess, setGuess] = useState(initialGuess);
 	const [pastGuessArr, setPastGuessArr] = useState([initialGuess.toString()]);
+	const [currWidth, setCurrWidth] = useState(Dimensions.get('window').width);
+	const [currHeight, setCurrHeight] = useState(Dimensions.get('window').height);
 	const currLow = useRef(1); // the benifit of doing this is that the comp doesn't rerender when the val is changed.
 	const currHigh = useRef(100);
 
+	useEffect(() => {
+		const updateLayout = () => {
+			setCurrWidth(Dimensions.get('window').width);
+			setCurrHeight(Dimensions.get('window').height);
+		}
+		Dimensions.addEventListener('change', updateLayout);
+		return () => {
+			Dimensions.removeEventListener('change', updateLayout);
+		}
+	});
 
 	useEffect(() => {
 		if (guess === userNum) {
@@ -73,6 +85,36 @@ const GameScreen = (props) => {
 		setGuess(nextNum);
 		// setRounds(prevRounds => prevRounds + 1);
 		setPastGuessArr(prevPastGuess => [nextNum.toString(), ...prevPastGuess])
+	}
+
+	if (currHeight < 500) {
+		return (
+			<View style={styles.screen}>
+				<Text>Opponent's guess</Text>
+				<View style={styles.control}>
+					<MainButton onPress={() => nextGuessHandler('lower')}>
+						<Ionicons name="md-remove" size={24} color="white"/>
+					</MainButton>
+					<NumberCon>{guess}</NumberCon>
+					<MainButton onPress={() => nextGuessHandler('greater')}>
+						<Ionicons name="md-add" size={24} color="white"/>
+					</MainButton>
+				</View>
+				<View style={styles.listCon}>
+					{/* <ScrollView contentContainerStyle={styles.list}>
+						{pastGuessArr.map((guess, index) => (
+							renderList(guess, pastGuessArr.length - index)
+						))}
+					</ScrollView> */}
+					<FlatList 
+						keyExtractor={item => item}				
+						data={pastGuessArr}
+						renderItem={renderList.bind(this, pastGuessArr.length)}
+						contentContainerStyle={styles.list}
+					/>
+				</View>
+			</View>
+		);
 	}
 
 	return (
@@ -127,6 +169,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 		width: '100%',
 	},
+	control: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		width: '80%'
+	},	
 	listCon: {
 		flex: 1, // Need to add flex 1 to view with nested scroll for android
 		width:  Dimensions.get('window').width > 350 ? '60%' : '80%', // Add Styles to view not scrollview

@@ -26,13 +26,10 @@ const StartGameScreen = (props) => {
 	const [selectedNum, setSelectedNum] = useState(0);
 	const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4);
 
-	
-
 	useEffect(() => {
 		const upDateButtonWidth = () => {
 			setButtonWidth(Dimensions.get('window').width / 4);
 		}
-	
 		Dimensions.addEventListener('change', upDateButtonWidth);
 		return () => {
 			Dimensions.removeEventListener('change', upDateButtonWidth);

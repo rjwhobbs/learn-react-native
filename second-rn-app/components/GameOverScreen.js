@@ -38,9 +38,11 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		// paddingBottom: 20
 	},
 	imageCon: {
+		// This is broken because Dimensions....only happens once unless you setup eventlisteners to change it
 		width: Dimensions.get('window').width * 0.7 ,
 		height: Dimensions.get('window').width * 0.7 ,
 		borderRadius: Dimensions.get('window').width * 0.7 , // border radius should always be half
