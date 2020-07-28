@@ -4,7 +4,14 @@ import colours from '../constants/colours';
 
 const Header = (props) => {
 	return (
-		<View style={styles.header}>
+		<View 
+			style={{
+				...styles.header, 
+				...Platform.select({
+					ios: styles.iosHeader, 
+					android: styles.androidHeader})
+				}}
+		>
 			<Text style={styles.title}>
 				{props.title}
 			</Text>
@@ -17,11 +24,16 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: 90,
 		paddingTop: 36,
-		backgroundColor: Platform.OS === 'android' ? colours.primary : 'white',
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderBottomColor: Platform.OS === 'ios' ?  colours.accent : 'transparent',
-		borderBottomWidth: Platform.OS === 'ios' ? 1 : 0
+	},
+	iosHeader: {
+		backgroundColor: 'white',
+		borderBottomColor: colours.accent,
+		borderBottomWidth: 1 
+	},
+	androidHeader: {
+		backgroundColor: colours.primary 
 	},
 	title: {
 		fontFamily: 'open-sans-bold',
