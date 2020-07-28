@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button, Image} from 'react-native';
 import c from '../constants/colours';
+import s from '../constants/styles';
 
 const GameOverScreen = (props) => {
 	return (
@@ -9,15 +10,20 @@ const GameOverScreen = (props) => {
 			<View style={styles.imageCon}>
 				<Image 
 					fadeDuration={1000} // After caching they won't be faded
-					// source={require('../assets/imgs/success.png')} //local
+					source={require('../assets/imgs/success.png')} //local
 					// RN cant get width and height form image from the web
-					source={{uri: 'https://www.yourdictionary.com/images/definitions/lg/12337.summit.jpg'}} 
+					// source={{uri: 'https://www.yourdictionary.com/images/definitions/lg/12337.summit.jpg'}} 
 					style={styles.image}
 					resizeMode='cover' // defualt
 				/>
 			</View>
-			<Text>Number of rounds: {props.rounds}</Text>
-			<Text>Number was: {props.userNum}</Text>
+			<Text style={{...styles.resultCon, ...s.reg}}> 
+				{/* styles inheret in nested <Text /> */}
+				Number of rounds: 
+				<Text style={s.bold}> {props.rounds} </Text>
+				. Number was: 
+				<Text style={s.bold}> {props.userNum}</Text>
+			</Text>
 			<Button 
 				title="New game"
 				onPress={props.onNewGame}
@@ -44,6 +50,10 @@ const styles = StyleSheet.create({
 	image: {
 		width: '100%',
 		height: '100%'
+	},
+	resultCon: {
+		marginHorizontal: 30,
+		textAlign: 'center'
 	}
 });
 

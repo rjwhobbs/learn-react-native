@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
 	},
 	bold: {
 		fontFamily: 'open-sans-bold',
-		fontSize: 30
 	}
 });
 
