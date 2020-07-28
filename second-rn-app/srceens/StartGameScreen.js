@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
 		fontFamily: 'open-sans-bold',
 	},
 	button: {
-		// width: 90, 
+		// width: 90,
+		// Dimensions is only calculated when app starts 
 		width: Dimensions.get('window').width / 4  // The benifit of this is you don't have to rely on the parent if using percentages
 	},
 	input: {
