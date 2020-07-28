@@ -15,6 +15,7 @@ import c from '../constants/colours';
 import s from '../constants/styles';
 import Input from '../components/Input';
 import NumberCon from '../components/NumberCon';
+import MainButton from '../components/MainButton';
 
 const StartGameScreen = (props) => {
 	const [userInput, setUserInput] = useState('');
@@ -54,11 +55,9 @@ const StartGameScreen = (props) => {
 				<NumberCon>
 					{selectedNum}	
 				</NumberCon>
-				<Button 
-					title="START GAME"
-					color={c.accent}
-					onPress={() => props.onStartGame(selectedNum)}
-				/>
+				<MainButton onPress={() => props.onStartGame(selectedNum)}>
+					START GAME
+				</MainButton>
 			</Card>
 		);
 	}

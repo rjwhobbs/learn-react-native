@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import NumberCon from './NumberCon';
 import Card from './Card';
+import MainButton from './MainButton';
 
 const genRandBetween = (min, max, exclude) => {
 	min = Math.ceil(min); // rounds up

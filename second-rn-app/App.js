@@ -47,13 +47,13 @@ export default function App() {
 
 	let content = <StartGameScreen onStartGame={startGameHandler}/>;
 	// test
-	content = (
-		<GameOverScreen 
-			rounds={1}
-			userNum={1}
-			onNewGame={newGame}
-		/>
-	);
+	// content = (
+	// 	<GameOverScreen 
+	// 		rounds={1}
+	// 		userNum={1}
+	// 		onNewGame={newGame}
+	// 	/>
+	// );
 
 	if (userNum && numRounds <= 0) {
 		content = ( 

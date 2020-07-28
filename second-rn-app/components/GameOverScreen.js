@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Button, Image} from 'react-native';
 import c from '../constants/colours';
 import s from '../constants/styles';
+import MainButton from './MainButton';
 
 const GameOverScreen = (props) => {
 	return (
@@ -24,10 +25,9 @@ const GameOverScreen = (props) => {
 				. Number was: 
 				<Text style={s.bold}> {props.userNum}</Text>
 			</Text>
-			<Button 
-				title="New game"
-				onPress={props.onNewGame}
-			/>
+			<MainButton onPress={props.onNewGame}>
+				New game
+			</MainButton>
 		</View>
 	);
 }
