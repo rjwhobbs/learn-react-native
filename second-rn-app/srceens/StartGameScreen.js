@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { 
 		View, 
 		StyleSheet, 
@@ -24,6 +24,20 @@ const StartGameScreen = (props) => {
 	const [userInput, setUserInput] = useState('');
 	const [confirmed, setConfirmed] = useState(false);
 	const [selectedNum, setSelectedNum] = useState(0);
+	const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4);
+
+	
+
+	useEffect(() => {
+		const upDateButtonWidth = () => {
+			setButtonWidth(Dimensions.get('window').width / 4);
+		}
+	
+		Dimensions.addEventListener('change', upDateButtonWidth);
+		return () => {
+			Dimensions.removeEventListener('change', upDateButtonWidth);
+		}
+	});
 
 	const inputHandler = (input) => {
 		setUserInput(input.replace(/[^0-9]/g, ''));
@@ -88,14 +102,14 @@ const StartGameScreen = (props) => {
 								value={userInput}
 							/>
 							<View style={styles.buttonCon}>
-								<View style={styles.button}>
+								<View style={{width: buttonWidth}}>
 									<Button 
 										title="Reset"
 										color={c.accent}
 										onPress={resetHandler}
 									/>
 								</View>
-								<View style={styles.button}>
+								<View style={{width: buttonWidth}}>
 									<Button 
 										title="Confirm"
 										color={c.primary}
@@ -140,11 +154,11 @@ const styles = StyleSheet.create({
 		color: c.primary,
 		fontFamily: 'open-sans-bold',
 	},
-	button: {
-		// width: 90,
-		// Dimensions is only calculated when app starts 
-		width: Dimensions.get('window').width / 4  // The benifit of this is you don't have to rely on the parent if using percentages
-	},
+	// button: {
+	// 	// width: 90,
+	// 	// Dimensions is only calculated when app starts, it only runs once 
+	// 	width: Dimensions.get('window').width / 4  // The benifit of this is you don't have to rely on the parent if using percentages
+	// },
 	input: {
 		width: 50,
 		textAlign: 'center'
