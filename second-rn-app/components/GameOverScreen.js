@@ -8,7 +8,10 @@ const GameOverScreen = (props) => {
 			<Text>The game is over!</Text>
 			<View style={styles.imageCon}>
 				<Image 
-					source={require('../assets/imgs/success.png')}
+					fadeDuration={1000} // After caching they won't be faded
+					// source={require('../assets/imgs/success.png')} //local
+					// RN cant get width and height form image from the web
+					source={{uri: 'https://www.yourdictionary.com/images/definitions/lg/12337.summit.jpg'}} 
 					style={styles.image}
 					resizeMode='cover' // defualt
 				/>
