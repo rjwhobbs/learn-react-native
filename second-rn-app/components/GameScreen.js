@@ -88,8 +88,8 @@ const GameScreen = (props) => {
 					<Ionicons name="md-add" size={24} color="white"/>
 				</MainButton>
 			</Card>
-			<View style={styles.list}>
-				<ScrollView>
+			<View style={styles.listCon}>
+				<ScrollView contentContainerStyle={styles.list}>
 					{pastGuessArr.map((guess, index) => (
 						renderList(guess, pastGuessArr.length - index)
 					))}
@@ -119,11 +119,17 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		borderWidth: 1,
 		flexDirection: 'row',
-		justifyContent: 'space-around'
+		justifyContent: 'space-around',
+		width: '60%'
 	},
-	list: {
+	listCon: {
 		flex: 1, // Need to add flex 1 to view with nested scroll for android
 		width: '80%', // Add Styles to view not scrollview
+	},
+	list: {
+		flexGrow: 1, // to be able to take as much space but keeps normal behaviour
+		alignItems: 'center',
+		justifyContent: 'flex-end'
 	}
 });
 
