@@ -4,29 +4,18 @@ import c from '../constants/colours';
 import s from '../constants/styles';
 
 const MainButton = (props) => {
-	let ButtonComp = TouchableOpacity;
-
-	if (Platform.OS === 'android' && Platform.Version >= 21) {
-		ButtonComp = TouchableNativeFeedback;
-	}
 	return (
-		<View style={styles.buttonCon}>
-			<ButtonComp onPress={props.onPress}>
+			<TouchableOpacity onPress={props.onPress}>
 				<View style={styles.button}>
 					<Text style={{...styles.buttonText, ...s.reg18}}>
 						{props.children}
 					</Text>
 				</View>
-			</ButtonComp>
-		</View>
+			</TouchableOpacity>
 	);
 }
 
 const styles = StyleSheet.create({
-	buttonCon: {
-		borderRadius: 25,
-		overflow: 'hidden'
-	},
 	button: {
 		backgroundColor: c.primary,
 		paddingVertical: 15,
