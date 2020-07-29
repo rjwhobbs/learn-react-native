@@ -10,7 +10,7 @@ const Header = (props) => {
 				...Platform.select({
 					ios: styles.iosHeader, 
 					android: styles.androidHeader})
-				}}
+			}}
 		>
 			<Text style={styles.title}>
 				{props.title}
