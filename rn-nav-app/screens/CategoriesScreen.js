@@ -2,14 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 const CategoriesScreen = props => {
-	console.log(props);
   return (
     <View style={styles.screen}>
       <Text>The Categories Screen!</Text>
 			<Button 
 				title="Go to meals"
 				onPress={() => {
-					props.navigation.navigate({routeName: 'CategoryMeals'});
+					props.navigation.navigate({routeName: 'CategoryMeals'}); //Use .push() to stay on the same screen
 				}}
 			/>
     </View>
