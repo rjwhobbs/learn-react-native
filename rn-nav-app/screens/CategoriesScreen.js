@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Platform } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import c from '../constants/colours';
-const {pc} = require('../constants/platformColours');
 
 import {CATEGORIES} from '../data/dummy-data'
 
@@ -13,7 +12,11 @@ const CategoriesScreen = props => {
 			<TouchableOpacity 
 				style={styles.gridItem}
 				onPress={() => {
-				props.navigation.navigate({routeName: 'CategoryMeals'})
+				props.navigation.navigate({
+					routeName: 'CategoryMeals', 
+					params: {
+						cid: itemData.item.id
+				}})
 			}}>
 				<View >
 					<Text>{itemData.item.title}</Text>
@@ -33,13 +36,6 @@ const CategoriesScreen = props => {
 
 CategoriesScreen.navigationOptions = {
 	headerTitle: 'Meal Catergories',
-	headerStyle: {
-		backgroundColor: pc.headerbg
-	},
-	headerTintColor: pc.headerText,
-	cardStyle: {
-		backgroundColor: "#fff"
-	}
 }
 
 const styles = StyleSheet.create({
