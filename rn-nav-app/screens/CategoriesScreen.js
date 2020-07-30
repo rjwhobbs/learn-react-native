@@ -8,7 +8,8 @@ const CategoriesScreen = props => {
 			<Button 
 				title="Go to meals"
 				onPress={() => {
-					props.navigation.navigate({routeName: 'CategoryMeals'}); //Use .push() to stay on the same screen
+					// props.navigation.navigate({routeName: 'CategoryMeals'}); //Use .push() to stay on the same screen, doesn't take an object
+					props.navigation.replace('CategoryMeals'); // removes this screen from the stack
 				}}
 			/>
     </View>
