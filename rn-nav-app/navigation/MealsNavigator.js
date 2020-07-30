@@ -8,30 +8,21 @@ const {pc} = require('../constants/platformColours');
 const MealsNavigator = createStackNavigator({
 	Categories: {
 		screen: CategoriesScreen,
-		navigationOptions: {
-			headerStyle: {
-				backgroundColor: pc.headerbg
-			},
-			headerTintColor: pc.headerText,
-			cardStyle: {
-				backgroundColor: "#fff"
-			}
-		}
 	},
   CategoryMeals: {
 		screen: CategoryMealsScreen,
-		navigationOptions: {
-			headerStyle: {
-				backgroundColor: pc.headerbg
-			},
-			headerTintColor: pc.headerText,
-			cardStyle: {
-				backgroundColor: "#fff"
-			}
-		}
   },
 	MealDetail: MealDetailScreen,
-	
+}, {
+	defaultNavigationOptions: {
+		headerStyle: {
+			backgroundColor: pc.headerbg
+		},
+		headerTintColor: pc.headerText,
+		cardStyle: {
+			backgroundColor: "#fff"
+		}
+	}
 });
 
 export default createAppContainer(MealsNavigator);
