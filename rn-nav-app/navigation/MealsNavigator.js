@@ -3,7 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
-const {pc} = require('../constants/platformColours');
+const {ps} = require('../constants/platformSelect');
 
 const MealsNavigator = createStackNavigator({
 	Categories: {
@@ -16,9 +16,9 @@ const MealsNavigator = createStackNavigator({
 }, {
 	defaultNavigationOptions: {
 		headerStyle: {
-			backgroundColor: pc.headerbg
+			backgroundColor: ps.headerbg
 		},
-		headerTintColor: pc.headerText,
+		headerTintColor: ps.headerText,
 		cardStyle: {
 			backgroundColor: "#fff"
 		}
