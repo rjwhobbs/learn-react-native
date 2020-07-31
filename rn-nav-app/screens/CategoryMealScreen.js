@@ -4,9 +4,9 @@ import {CATEGORIES} from '../data/dummy-data';
 
 const CategoryMealScreen = props => {
 	const catId = props.navigation.getParam('cid');
+	let test = props.navigation.getParam('title'); // This works, not sure why the tutor doesn't do it this way.
 	const selectedCat = CATEGORIES.find(cat => cat.id === catId);
-	console.log(selectedCat);
-	console.log('1');
+	console.log(test);
 	
   return (
 		<View style={styles.screen}>
@@ -29,11 +29,10 @@ const CategoryMealScreen = props => {
 };
 
 // So this seems to work asyncronously hence a global var doesn't work.
-// Would probably be more eficient to pass the title from the parent?
+// Would probably be more eficient to pass the title from the parent? Yup it is
 CategoryMealScreen.navigationOptions = (navigationData) => {
 	const catId = navigationData.navigation.getParam('cid');
 	const selectedCat = CATEGORIES.find(cat => cat.id === catId);
-	console.log('2');
 	
 	return {
 		headerTitle: selectedCat.title
