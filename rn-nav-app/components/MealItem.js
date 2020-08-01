@@ -20,7 +20,9 @@ const MealItem = (props) => {
 							source={{uri: props.image}}
 							style={s.bgImage}
 						>
-							<Text>{props.title}</Text>
+							<Text style={s.title}>
+								{props.title}
+							</Text>
 						</ImageBackground>
 					</View>
 					<View style={{...s.row, ...s.mealDetail}}>
@@ -52,7 +54,16 @@ const s = StyleSheet.create({
 	},
 	bgImage: {
 		width: '100%', // Web images need 100 here
-		height: '100%'
+		height: '100%',
+		justifyContent: 'flex-end'
+	},
+	title: {
+		fontFamily: 'open-sans-bold',
+		fontSize: 20,
+		color: '#fff',
+		backgroundColor: 'rgba(0, 0, 0, 0.5)', // black background with transparency
+		paddingVertical: 5,
+		paddingHorizontal: 12
 	}
 });	
 	
