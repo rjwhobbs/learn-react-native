@@ -1,29 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import {CATEGORIES} from '../data/dummy-data';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import {CATEGORIES, MEALS} from '../data/dummy-data';
 
 const CategoryMealScreen = props => {
+	const renderMealItem = (itemData) => {
+		return (
+			<View>
+				<Text>
+					{itemData.item.title}
+				</Text>
+			</View>
+		);
+	}
+
 	const catId = props.navigation.getParam('cid');
 	let test = props.navigation.getParam('title'); // This works, not sure why the tutor doesn't do it this way.
-	const selectedCat = CATEGORIES.find(cat => cat.id === catId);
-	console.log(test);
+	// indexOf() returns -1 if it can't find the value
+	const displayMeals = MEALS.filter(meal => meal.catId.indexOf(catId) >=0 );
 	
   return (
 		<View style={styles.screen}>
-      <Text>The Category Meal Screen!</Text>
-			<Text>{selectedCat.title}</Text>
-			<Button 
-				title="Go to details"
-				onPress={() => {
-					props.navigation.navigate({routeName: 'MealDetail'})
-				}}
-				/>
-			<Button 
-				title="Go back"
-				onPress={() => {
-					props.navigation.goBack(); // Manually going back, or .pop() only for stack
-				}}
-				/>
+			<FlatList
+				data={displayMeals}
+				renderItem={renderMealItem} 
+			/>
     </View>
   );
 };
