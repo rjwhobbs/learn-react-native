@@ -43,17 +43,21 @@ const s = StyleSheet.create({
 	mealItem: {
 		height: 200,
 		width: '100%',
-		backgroundColor: '#ccc'
+		backgroundColor: '#f5f5f5',
+		borderRadius: 10,
+		overflow: 'hidden' // Without this the image overflows the radius
 	},
-	row: {
+	row: { 
 		flexDirection: 'row'
 	},
 	mealHeader: {
-		height: '90%'
+		height: '85%'
 	},
 	mealDetail: {
 		paddingHorizontal: 10,
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		height: '15%'
 	},
 	bgImage: {
 		width: '100%', // Web images need 100 here
