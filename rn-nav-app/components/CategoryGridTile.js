@@ -20,7 +20,8 @@ const CategoryGridTile = (props) => {
 				<View style={{...styles.screen, ...{backgroundColor: props.color}}}>
 					<Text 
 						numberOfLines={2}
-						style={styles.title}>
+						style={styles.title}
+					>
 						{props.title}
 					</Text>
 				</View>
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
 		height: 150,
 		borderRadius: 10,
 		elevation: 8,
-		overflow: ps.visibility     // 'hidden' // this kills shadow effect
+		overflow: ps.visibility // 'hidden' // this kills shadow effect
 	},
 	title: {
 		fontFamily: 'open-sans-bold',
