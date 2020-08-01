@@ -18,11 +18,14 @@ const MealItem = (props) => {
 					<View style={{...s.row, ...s.mealHeader}}>
 						<ImageBackground 
 							source={{uri: props.image}}
-							style={s.bgImage}
-						>
-							<Text style={s.title}>
-								{props.title}
-							</Text>
+							style={s.bgImage}>
+							<View style={s.titleCon}>
+								<Text 
+									style={s.title}
+									numberOfLines={1}>
+									{props.title}
+								</Text>
+							</View>
 						</ImageBackground>
 					</View>
 					<View style={{...s.row, ...s.mealDetail}}>
@@ -57,13 +60,16 @@ const s = StyleSheet.create({
 		height: '100%',
 		justifyContent: 'flex-end'
 	},
+	titleCon: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)', // black background with transparency
+		paddingVertical: 5,
+		paddingHorizontal: 12,
+	},	
 	title: {
 		fontFamily: 'open-sans-bold',
 		fontSize: 20,
 		color: '#fff',
-		backgroundColor: 'rgba(0, 0, 0, 0.5)', // black background with transparency
-		paddingVertical: 5,
-		paddingHorizontal: 12
+		textAlign: 'center',
 	}
 });	
 	
