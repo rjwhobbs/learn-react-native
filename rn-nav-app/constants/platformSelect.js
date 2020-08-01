@@ -26,7 +26,7 @@ if (Platform.OS === 'ios') {
 	visibility = 'hidden';
 }
 
-console.log("THis ran");
+console.log("Platform detector ran");
 
 export const ps = {
 	os,
