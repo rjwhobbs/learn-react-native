@@ -8,6 +8,10 @@ const CategoryMealScreen = props => {
 		return (
 			<MealItem 
 				title={itemData.item.title}
+				duration={itemData.item.duration}
+				complexity={itemData.item.complexity}
+				value={itemData.item.value}
+				image={itemData.item.imgUrl}
 				onSelect={() => {}}
 			/>
 		);
