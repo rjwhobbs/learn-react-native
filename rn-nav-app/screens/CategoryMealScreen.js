@@ -21,7 +21,7 @@ const CategoryMealScreen = props => {
   return (
 		<View style={styles.screen}>
 			<FlatList
-				style={{width: '100%', padding: 10}}
+				style={{width: '100%'}}
 				data={displayMeals}
 				renderItem={renderMealItem} 
 			/>
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+		alignItems: 'center', 
+		padding: 15
   }
 });
 
