@@ -58,7 +58,8 @@ const tabsScreenConfig = {
 						color={tabInfo.tintColor} 
 					/>
 				);
-			}
+			},
+			tabBarColor: c.primary
 		}
 	}
 };
