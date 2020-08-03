@@ -9,6 +9,7 @@ import FavoritesScreen from '../screens/FavoritesScreen'
 const {ps} = require('../constants/platformSelect');
 import c from '../constants/colours';
 import {Ionicons} from '@expo/vector-icons';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 
 const MealsNavigator = createStackNavigator({
 	Categories: {
@@ -30,7 +31,7 @@ const MealsNavigator = createStackNavigator({
 	}
 });
 
-const MealsTabNavigator = createBottomTabNavigator({
+const tabsScreenConfig = {
 	Meals: {
 		screen: MealsNavigator,
 		navigationOptions: {
@@ -60,7 +61,17 @@ const MealsTabNavigator = createBottomTabNavigator({
 			}
 		}
 	}
-}, {
+};
+
+const MealsTabNavigator = ps.os === 'android' 
+? createMaterialBottomTabNavigator(
+	tabsScreenConfig, {
+		activeColor: c.secondary,
+		shifting: true
+	}
+) 
+: createBottomTabNavigator(
+	tabsScreenConfig, {
 	tabBarOptions: {
 		activeTintColor: c.secondary
 	}
