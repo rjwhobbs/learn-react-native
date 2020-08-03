@@ -27,7 +27,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 
 	return {
 		headerTitle: selectedMeal.title,
-		headerRight: ( 
+		headerRight: () => ( 
 			<HeaderButtons HeaderButtonComponent={CusHeaderButton}>
 			{/* Here title is a fall back (Title also used as key)
 				multiple items also possible */}
