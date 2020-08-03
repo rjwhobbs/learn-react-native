@@ -6,6 +6,7 @@ import MealDetailScreen from '../screens/MealDetailScreen';
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 import FavoritesScreen from '../screens/FavoritesScreen'
 const {ps} = require('../constants/platformSelect');
+import c from '../constants/colours';
 
 const MealsNavigator = createStackNavigator({
 	Categories: {
@@ -30,6 +31,10 @@ const MealsNavigator = createStackNavigator({
 const MealsTabNavigator = createBottomTabNavigator({
 	Meals: MealsNavigator,
 	Favorites: FavoritesScreen
+}, {
+	tabBarOptions: {
+		activeTintColor: c.secondary
+	}
 }); //Returns a react component
 
 export default createAppContainer(MealsTabNavigator);
