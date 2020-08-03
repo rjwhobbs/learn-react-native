@@ -45,7 +45,8 @@ const s = StyleSheet.create({
 		width: '100%',
 		backgroundColor: '#f5f5f5',
 		borderRadius: 10,
-		overflow: 'hidden' // Without this the image overflows the radius
+		overflow: 'hidden', // Without this the image overflows the radius
+		marginVertical: 15
 	},
 	row: { 
 		flexDirection: 'row'

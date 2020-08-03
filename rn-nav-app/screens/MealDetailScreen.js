@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import {MEALS} from '../data/dummy-data';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import CusHeaderButton from '../components/CusHeaderButton';
 
 const MealDetailScreen = props => {
 	const mealId = props.navigation.getParam('mealId');
@@ -24,7 +26,20 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 	const selectedMeal = MEALS.find(meal => mealId === meal.id);
 
 	return {
-		headerTitle: selectedMeal.title
+		headerTitle: selectedMeal.title,
+		headerRight: ( 
+			<HeaderButtons HeaderButtonComponent={CusHeaderButton}>
+			{/* Here title is a fall back (Title also used as key)
+				multiple items also possible */}
+				<Item 
+					title="Favourite"
+					iconName='ios-star' // This is a Ionicons icon name
+					onPress={() => {
+						console.log("Fav button pressed");
+					}}
+				/> 
+			</HeaderButtons>
+		)
 	}
 }
 
