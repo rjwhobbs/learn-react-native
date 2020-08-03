@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import CategoriesScreen from '../screens/CategoriesScreen';
@@ -7,6 +8,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs'
 import FavoritesScreen from '../screens/FavoritesScreen'
 const {ps} = require('../constants/platformSelect');
 import c from '../constants/colours';
+import {Ionicons} from '@expo/vector-icons';
 
 const MealsNavigator = createStackNavigator({
 	Categories: {
@@ -29,8 +31,34 @@ const MealsNavigator = createStackNavigator({
 });
 
 const MealsTabNavigator = createBottomTabNavigator({
-	Meals: MealsNavigator,
-	Favorites: FavoritesScreen
+	Meals: {
+		screen: MealsNavigator,
+		navigationOptions: {
+			tabBarIcon: (tabInfo) => {
+				return (
+					<Ionicons 
+						name="ios-restaurant" 
+						size={25}
+						color={tabInfo.tintColor} // This take the active tint colour below
+					/>
+				);
+			}
+		}
+	},
+	Favorites: {
+		screen: FavoritesScreen,
+		navigationOptions: {
+			tabBarIcon: (tabInfo) => {
+				return (
+					<Ionicons 
+						name="ios-star" 
+						size={25}
+						color={tabInfo.tintColor} 
+					/>
+				);
+			}
+		}
+	}
 }, {
 	tabBarOptions: {
 		activeTintColor: c.secondary
