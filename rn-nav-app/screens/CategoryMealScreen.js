@@ -1,42 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
-import MealItem from '../components/MealItem';
+import MealList from '../components/MealList';
 
 const CategoryMealScreen = props => {
-	const renderMealItem = (itemData) => {
-		return (
-			<MealItem 
-				title={itemData.item.title}
-				duration={itemData.item.duration}
-				complexity={itemData.item.complexity}
-				value={itemData.item.value}
-				image={itemData.item.imgUrl}
-				onSelect={() => {
-					props.navigation.navigate({
-						routeName: 'MealDetail',
-						params: {
-							mealId: itemData.item.id
-						}
-					})
-				}}
-			/>
-		);
-	}
-
 	const catId = props.navigation.getParam('cid');
 	let test = props.navigation.getParam('title'); // This works, not sure why the tutor doesn't do it this way.
 	// indexOf() returns -1 if it can't find the value
 	const displayMeals = MEALS.filter(meal => meal.catId.indexOf(catId) >=0 );
 	
   return (
-		<View style={styles.screen}>
-			<FlatList
-				style={{width: '100%'}}
-				data={displayMeals}
-				renderItem={renderMealItem} 
-			/>
-    </View>
+		<MealList
+			listData={displayMeals}
+			navigation={props.navigation} // navigation is not available on nested props
+		/>
   );
 };
 
@@ -52,12 +29,6 @@ CategoryMealScreen.navigationOptions = (navigationData) => {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-		alignItems: 'center', 
-		padding: 15
-  }
 });
 
 export default CategoryMealScreen;
