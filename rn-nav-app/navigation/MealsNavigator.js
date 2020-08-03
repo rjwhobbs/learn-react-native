@@ -43,7 +43,8 @@ const tabsScreenConfig = {
 						color={tabInfo.tintColor} // This take the active tint colour below
 					/>
 				);
-			}
+			},
+			tabBarColor: c.accent
 		}
 	},
 	Favorites: {
@@ -59,7 +60,7 @@ const tabsScreenConfig = {
 					/>
 				);
 			},
-			tabBarColor: c.primary
+			tabBarColor: c.primary // gives this tab a different color, shifting must be true
 		}
 	}
 };
@@ -67,8 +68,11 @@ const tabsScreenConfig = {
 const MealsTabNavigator = ps.os === 'android' 
 ? createMaterialBottomTabNavigator(
 	tabsScreenConfig, {
-		activeColor: c.secondary,
-		shifting: true
+		activeColor: '#fff',
+		shifting: false,
+		barStyle: {
+			backgroundColor: c.primary
+		}
 	}
 ) 
 : createBottomTabNavigator(
