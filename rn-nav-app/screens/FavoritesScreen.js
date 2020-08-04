@@ -13,4 +13,8 @@ const FavoritesScreen = props => {
   );
 };
 
+FavoritesScreen.navigationOptions = {
+	headerTitle: 'Filter Meals'
+}
+
 export default FavoritesScreen;

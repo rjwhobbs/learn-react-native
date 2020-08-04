@@ -6,10 +6,12 @@ import CategoryMealsScreen from '../screens/CategoryMealScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 import FavoritesScreen from '../screens/FavoritesScreen'
-const {ps} = require('../constants/platformSelect');
+import FiltersScreen from '../screens/FiltersScreen';
 import c from '../constants/colours';
 import {Ionicons} from '@expo/vector-icons';
-import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+const {ps} = require('../constants/platformSelect');
 
 const defaultStackOptions = {
 	headerStyle: {
@@ -91,4 +93,14 @@ const MealsTabNavigator = ps.os === 'android'
 	}
 }); //Returns a react component
 
-export default createAppContainer(MealsTabNavigator);
+// The reason for using a stack nav here is to get a header
+const FiltersNav = createStackNavigator({
+	Filters: FiltersScreen
+})
+
+const MainNavigator = createDrawerNavigator({
+	MealsFavs: MealsTabNavigator,
+	Filters: FiltersNav
+});
+
+export default createAppContainer(MainNavigator);
