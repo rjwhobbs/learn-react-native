@@ -2,13 +2,17 @@ import React, {useState} from 'react';
 import { View, Text, StyleSheet, Switch } from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CusHeaderButton from '../components/CusHeaderButton';
+import c from '../constants/colours';
+const {ps} = require('../constants/platformSelect');
 
 const Filterswitch = (props) => {
 	return (
 		<View style={s.filterCon}>
 			<Text>{props.label}</Text>
-			<Switch 
+			<Switch
+				trackColor={{true: c.accent}}
 				value={props.state}
+				thumbColor={props.state ? ps.trackThumb : ps.trackThumbFalse}
 				// Switch provides the new value, so I guess it has some kind of inner state
 				onValueChange={newValue => props.onChange(newValue)} 
 			/>

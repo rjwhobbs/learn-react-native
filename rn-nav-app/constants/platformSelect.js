@@ -13,6 +13,8 @@ let headerbg;
 let NativeButton;
 let visibility;
 let tabBarLabel;
+let trackThumb;
+let trackThumbFalse;
 
 if (Platform.OS === 'ios') {
 	os = 'ios'
@@ -21,6 +23,8 @@ if (Platform.OS === 'ios') {
 	NativeButton = TouchableOpacity;
 	visibility = 'visible';
 	tabBarLabel = (label) => label;
+	trackThumb = '#fff';
+	trackThumbFalse = '#fff';
 } else if (Platform.OS === 'android') {
 	os = 'android'
 	headerText = "#fff"
@@ -32,6 +36,8 @@ if (Platform.OS === 'ios') {
 			{label}
 		</Text>
 	);
+	trackThumb = c.primary;
+	trackThumbFalse = '#f5f5f5';
 }
 
 console.log("Platform detector");
@@ -42,5 +48,7 @@ export const ps = {
 	headerText,
 	headerbg,
 	visibility,
-	tabBarLabel
+	tabBarLabel,
+	trackThumb,
+	trackThumbFalse
 };
