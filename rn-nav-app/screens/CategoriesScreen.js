@@ -44,7 +44,7 @@ CategoriesScreen.navigationOptions = (navData) => {
 					title="Menu"
 					iconName="ios-menu"
 					onPress={() => {
-						navData.navigation.toggleDrawer();
+						navData.navigation.toggleDrawer(); //So I guess this will only work if a drawer was setup
 					}}
 				/>
 			</HeaderButtons>
