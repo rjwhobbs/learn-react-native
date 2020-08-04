@@ -96,11 +96,31 @@ const MealsTabNavigator = ps.os === 'android'
 // The reason for using a stack nav here is to get a header
 const FiltersNav = createStackNavigator({
 	Filters: FiltersScreen
+},  {
+	defaultNavigationOptions: defaultStackOptions
 })
 
 const MainNavigator = createDrawerNavigator({
-	MealsFavs: MealsTabNavigator,
-	Filters: FiltersNav
+	MealsFavs: {
+		screen: MealsTabNavigator,
+		navigationOptions: {
+			drawerLabel: 'Meals'
+		}
+	},
+	Filters: {
+		screen: FiltersNav,
+		navigationOptions: {
+			drawerLabel: 'Filters'
+		}
+	}
+}, {
+	contentOptions: {
+		activeTintColor: c.accent,
+		labelStyle: {
+			fontFamily: 'open-sans',
+			// color: c.primary
+		}
+	}
 });
 
 export default createAppContainer(MainNavigator);
