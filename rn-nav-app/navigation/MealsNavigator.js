@@ -64,7 +64,7 @@ const tabsScreenConfig = {
 			},
 			tabBarColor: c.accent,
 			// Work around for styling tabs for android material
-			tabBarLabel: ps.tabBarLabel('xxx')
+			tabBarLabel: ps.tabBarLabel('Meals')
 		}
 	},
 	Favorites: {
@@ -80,7 +80,8 @@ const tabsScreenConfig = {
 					/>
 				);
 			},
-			tabBarColor: c.primary // gives this tab a different color, shifting must be true
+			tabBarColor: c.primary, // gives this tab a different color, shifting must be true
+			tabBarLabel: ps.tabBarLabel('Favourites')
 		}
 	}
 };
