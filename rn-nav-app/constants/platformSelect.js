@@ -12,7 +12,7 @@ let headerText;
 let headerbg;
 let NativeButton;
 let visibility;
-let tabBarLabelMeals;
+let tabBarLabel;
 
 if (Platform.OS === 'ios') {
 	os = 'ios'
@@ -20,16 +20,16 @@ if (Platform.OS === 'ios') {
 	headerbg = '#fff'
 	NativeButton = TouchableOpacity;
 	visibility = 'visible';
-	tabBarLabelMeals = 'Meals';
+	tabBarLabel = (label) => label;
 } else if (Platform.OS === 'android') {
 	os = 'android'
 	headerText = "#fff"
 	headerbg = c.primary
 	NativeButton = TouchableNativeFeedback;
 	visibility = 'hidden';
-	tabBarLabelMeals = (
+	tabBarLabel = (label) => (
 		<Text style={{fontFamily: 'open-sans-bold'}}>
-			Meals
+			{label}
 		</Text>
 	);
 }
@@ -42,5 +42,5 @@ export const ps = {
 	headerText,
 	headerbg,
 	visibility,
-	tabBarLabelMeals
+	tabBarLabel
 };

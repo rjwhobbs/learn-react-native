@@ -63,7 +63,8 @@ const tabsScreenConfig = {
 				);
 			},
 			tabBarColor: c.accent,
-			tabBarLabel: ps.tabBarLabelMeals
+			// Work around for styling tabs for android material
+			tabBarLabel: ps.tabBarLabel('xxx')
 		}
 	},
 	Favorites: {
