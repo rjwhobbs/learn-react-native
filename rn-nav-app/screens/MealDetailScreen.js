@@ -12,6 +12,16 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CusHeaderButton from '../components/CusHeaderButton';
 import DefText from '../components/DefText'
 
+const ListItem = (props) => {
+	return (
+		<View style={s.listItem}>
+			<DefText>
+				{props.children}
+			</DefText>
+		</View>
+	)
+}
+
 const MealDetailScreen = props => {
 	const mealId = props.navigation.getParam('mealId');
 	const selectedMeal = MEALS.find(meal => mealId === meal.id);
@@ -27,18 +37,20 @@ const MealDetailScreen = props => {
 				<DefText>{selectedMeal.complexity.toUpperCase()}</DefText>
 				<DefText>{selectedMeal.value.toUpperCase()}</DefText>
 			</View>
-			<Text style={s.title}>
-				Ingredients
-			</Text>
-			<Text>
-				List of ingredients...
-			</Text>
-			<Text style={s.title}>
-				Steps
-			</Text>
-			<Text>
-				List of Steps...
-			</Text>
+			<Text style={s.title}>Ingredients</Text>
+			{selectedMeal.ingredients.map((item, index) => (
+				<ListItem 
+					key={item + index}>
+					{item}	
+				</ListItem>
+			))}
+			<Text style={s.title}>Steps</Text>
+			{selectedMeal.steps.map((item, index) => (
+				<ListItem 
+					key={item + index}>
+					{item}	
+				</ListItem>
+			))}
 			{/* <View style={s.screen}>
 				<Text>{slectedMeal.title}</Text>
 				<Button
@@ -83,6 +95,18 @@ const s = StyleSheet.create({
 	image: {
 		width: '100%',
 		height: 200
+	},
+	title: {
+		fontFamily: 'open-sans-bold',
+		fontSize: 22,
+		textAlign: 'center'
+	},
+	listItem: {
+		marginVertical: 10,
+		marginHorizontal: 20,
+		borderColor: "#f5f5f5",
+		borderWidth: 1,
+		padding: 10
 	}
 });
 
