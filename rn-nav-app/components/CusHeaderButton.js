@@ -13,7 +13,7 @@ const CusHeaderButton = (props) => {
 	return (	
 		<HeaderButton 
 			{...props}
-			IconComponent={Ionicons}
+			IconComponent={Ionicons} // Ionicons is just a comp, similar to i tags with fa
 			iconSize={23}
 			color={ps.headerText} 
 		/> //Pulling out the key value pairs		

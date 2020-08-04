@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, Platform } from 'reac
 import { FlatList } from 'react-native-gesture-handler';
 import c from '../constants/colours';
 import CategoryGridTile from '../components/CategoryGridTile';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import CusHeaderButton from '../components/CusHeaderButton';
 
 import {CATEGORIES} from '../data/dummy-data';
 
@@ -34,7 +36,16 @@ const CategoriesScreen = props => {
 };
 
 CategoriesScreen.navigationOptions = {
-	headerTitle: 'Meal Catergories'
+	headerTitle: 'Meal Catergories',
+	headerLeft: () => (
+		<HeaderButtons HeaderButtonComponent={CusHeaderButton}>
+			<Item 
+				title="Menu"
+				iconName="ios-menu"
+				onPress={() => {}}
+			/>
+		</HeaderButtons>
+	)
 }
 
 const styles = StyleSheet.create({
