@@ -14,7 +14,8 @@ const Filterswitch = (props) => {
 				value={props.state}
 				thumbColor={props.state ? ps.trackThumb : ps.trackThumbFalse}
 				// Switch provides the new value, so I guess it has some kind of inner state
-				onValueChange={newValue => props.onChange(newValue)} 
+				// but wait there's more, you can put this in the FilterSwitch comp
+				onValueChange={props.onChange} 
 			/>
 		</View>
 	)
@@ -22,6 +23,9 @@ const Filterswitch = (props) => {
 
 const FiltersScreen = props => {
 	const [isGlutenFree, setIsGlutenFree] = useState(false);
+	const [isLactoseFree, setIsLactoseFree] = useState(false);
+	const [isVegan, setIsVegan] = useState(false);
+	const [isVegetarian, setIsVegetarian] = useState(false);
 
   return (
     <View style={s.screen}>
@@ -29,7 +33,22 @@ const FiltersScreen = props => {
 			<Filterswitch 
 				label="Gluten free"
 				state={isGlutenFree}
-				onChange={setIsGlutenFree}
+				onChange={newValue => setIsGlutenFree(newValue)}
+			/>
+			<Filterswitch 
+				label="Lactose free"
+				state={isLactoseFree}
+				onChange={newValue => setIsLactoseFree(newValue)}
+			/>
+			<Filterswitch 
+				label="Vegan"
+				state={isVegan}
+				onChange={newValue => setIsVegan(newValue)}
+			/>
+			<Filterswitch 
+				label="Vegetarian"
+				state={isVegetarian}
+				onChange={newValue => setIsVegetarian(newValue)}
 			/>
     </View>
   );
@@ -67,7 +86,8 @@ const s = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		width: '80%'
+		width: '80%',
+		marginBottom: 10
 	}
 });
 
