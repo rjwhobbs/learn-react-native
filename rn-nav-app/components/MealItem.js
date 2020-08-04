@@ -3,10 +3,10 @@ import {
 	StyleSheet,	
 	Text,	
 	View,	
-	Button,	
-	TextInput,
 	ImageBackground		
 } from 'react-native';
+import DefText from './DefText';
+
 const {ps} = require('../constants/platformSelect');	
 	
 const MealItem = (props) => {
@@ -29,9 +29,9 @@ const MealItem = (props) => {
 						</ImageBackground>
 					</View>
 					<View style={{...s.row, ...s.mealDetail}}>
-						<Text>{props.duration}m</Text>
-						<Text>{props.complexity.toUpperCase()}</Text>
-						<Text>{props.value.toUpperCase()}</Text>
+						<DefText>{props.duration}m</DefText>
+						<DefText>{props.complexity.toUpperCase()}</DefText>
+						<DefText>{props.value.toUpperCase()}</DefText>
 					</View>
 				</View>	
 			</NativeButton>	
