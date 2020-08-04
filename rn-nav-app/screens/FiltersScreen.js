@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { View, Text, StyleSheet, Switch } from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CusHeaderButton from '../components/CusHeaderButton';
@@ -22,10 +22,28 @@ const Filterswitch = (props) => {
 }
 
 const FiltersScreen = props => {
+	const {navigation} = props;
+
 	const [isGlutenFree, setIsGlutenFree] = useState(false);
 	const [isLactoseFree, setIsLactoseFree] = useState(false);
 	const [isVegan, setIsVegan] = useState(false);
 	const [isVegetarian, setIsVegetarian] = useState(false);
+
+	// So if saveFilters is recreated useEffect runs again
+	const saveFilters = useCallback(() => {
+		const appliedFilters = {
+			isGlutenFree,
+			isLactoseFree,
+			isVegan,
+			isVegetarian
+		};
+		console.log(appliedFilters);
+	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+
+	useEffect(() => {
+		// NB set params will cause the comp to rebuild because it changes the props.
+		navigation.setParams({save: saveFilters}); // this just adds to any already existing params
+	}, [saveFilters]);
 
   return (
     <View style={s.screen}>
@@ -65,6 +83,15 @@ FiltersScreen.navigationOptions = (navData) => {
 					onPress={() => {
 						navData.navigation.toggleDrawer();
 					}}
+				/>
+			</HeaderButtons>
+		),
+		headerRight: () => (
+			<HeaderButtons HeaderButtonComponent={CusHeaderButton}>
+				<Item 
+					title="Save"
+					iconName="ios-save"
+					onPress={navData.navigation.getParam('save')}
 				/>
 			</HeaderButtons>
 		)
