@@ -28,6 +28,9 @@ const MealDetailScreen = props => {
 	const mealId = props.navigation.getParam('mealId');
 	const availableMeals = useSelector(state => state.meals.meals);
 	const selectedMeal = availableMeals.find(meal => mealId === meal.id);
+	const currMealIsFav = useSelector(
+		state => state.meals.mealsFav.some(meal => meal.id === mealId)
+	);
 	const dispatch = useDispatch(); // React-redux makes sure this never changes
 
 	const toggleFavoriteHandler = useCallback(() => {
@@ -37,7 +40,11 @@ const MealDetailScreen = props => {
 	useEffect(() => {
     // props.navigation.setParams({ mealTitle: selectedMeal.title });
     props.navigation.setParams({toggleFav: toggleFavoriteHandler});
-  }, [toggleFavoriteHandler]);
+	}, [toggleFavoriteHandler]);
+	
+	useEffect(() => {
+    props.navigation.setParams({isFav: currMealIsFav});
+  }, [currMealIsFav]);
 
 	return (
 		<ScrollView>
@@ -81,6 +88,8 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 	// const mealId = navigationData.navigation.getParam('mealId');
 	const mealTitle = navigationData.navigation.getParam('mealTitle');
 	const toggleFavorite = navigationData.navigation.getParam('toggleFav');
+	const isFav = navigationData.navigation.getParam('isFav');
+	console.log("CXCXC", isFav);
 	// const selectedMeal = MEALS.find(meal => mealId === meal.id);
 
 	return {
@@ -91,7 +100,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 				multiple items also possible */}
 				<Item
 					title="Favourite"
-					iconName='ios-star' // This is a Ionicons icon name
+					iconName={isFav? 'ios-star': 'ios-star-outline'} // This is a Ionicons icon name
 					onPress={toggleFavorite}
 				/>
 			</HeaderButtons>
