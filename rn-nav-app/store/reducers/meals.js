@@ -10,7 +10,6 @@ const initState = {
 const mealsReducer = (state = initState, action) => {
 	switch (action.type) {
 		case TOGGLE_FAVORITE:
-			// Findindex is for typed arrays
 			const existingIndex = state.mealsFav.findIndex(meal => action.mealId === meal.id);
 			if (existingIndex >= 0) {
 				const upDatedFavs = [...state.mealsFav];
