@@ -7,7 +7,7 @@ import {
 	
 const DefText = (props) => {	
 	return (	
-		<Text style={styles.container}>
+		<Text style={styles.container} {...props}>
 			{props.children}	
 		</Text>	
 	);	
