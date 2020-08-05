@@ -1,7 +1,10 @@
 import React, {useState, useEffect, useCallback} from 'react';
+import {useDispatch} from 'react-redux';
 import { View, Text, StyleSheet, Switch } from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CusHeaderButton from '../components/CusHeaderButton';
+import {setFilters} from '../store/actions/meals';
+
 import c from '../constants/colours';
 const {ps} = require('../constants/platformSelect');
 
@@ -23,22 +26,23 @@ const Filterswitch = (props) => {
 
 const FiltersScreen = props => {
 	const {navigation} = props;
-
 	const [isGlutenFree, setIsGlutenFree] = useState(false);
 	const [isLactoseFree, setIsLactoseFree] = useState(false);
 	const [isVegan, setIsVegan] = useState(false);
 	const [isVegetarian, setIsVegetarian] = useState(false);
 
+	const dispatch = useDispatch();
+
 	// So if saveFilters is recreated useEffect runs again
 	const saveFilters = useCallback(() => {
 		const appliedFilters = {
-			isGlutenFree,
-			isLactoseFree,
-			isVegan,
-			isVegetarian
+			glutenFree: isGlutenFree,
+			lactoseFree: isLactoseFree,
+			vegan: isVegan,
+			vegetarian: isVegetarian
 		};
-		console.log(appliedFilters);
-	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+		dispatch(setFilters(appliedFilters));
+	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
 	// this causes an infinite loop, saveFilters becomes a new object and
 	// useEffect is ran setParams is ran, props change and function rerenders then...

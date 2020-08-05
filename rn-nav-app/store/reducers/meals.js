@@ -21,7 +21,8 @@ const mealsReducer = (state = initState, action) => {
 				return {...state, mealsFav: state.mealsFav.concat(meal)}
 			}
 		case SET_FILTERS:
-			const upDatedFilteredMeals = state.mealsFav.filter(meal => {
+			console.log("RRRR", action.filters);
+			const upDatedFilteredMeals = state.meals.filter(meal => {
 				// It seems so simple but this is a real nice implamentation of a check
 				if (action.filters.glutenFree && !meal.isGlutenFree) {
 					return false;
@@ -36,8 +37,8 @@ const mealsReducer = (state = initState, action) => {
 					return false;
 				}
 				return true;
-			})
-			return {...state, mealsFav: upDatedFilteredMeals}
+			});
+			return {...state, mealsFilter: upDatedFilteredMeals}
 		// default will run the first time
 		default:
 			return state;
