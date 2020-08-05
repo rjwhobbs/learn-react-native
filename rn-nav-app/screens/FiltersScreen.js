@@ -40,8 +40,21 @@ const FiltersScreen = props => {
 		console.log(appliedFilters);
 	}, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
+	// this causes an infinite loop, saveFilters becomes a new object and
+	// useEffect is ran setParams is ran, props change and function rerenders then...
+	// const saveFilters = () => {
+	// 	const appliedFilters = {
+	// 		isGlutenFree,
+	// 		isLactoseFree,
+	// 		isVegan,
+	// 		isVegetarian
+	// 	};
+	// 	console.log(appliedFilters);
+	// };
+
 	useEffect(() => {
-		// NB set params will cause the comp to rebuild because it changes the props.
+		// NB set params will cause the comp to rebuild because it changes its props,
+		// Navigation props.
 		navigation.setParams({save: saveFilters}); // this just adds to any already existing params
 	}, [saveFilters]);
 
