@@ -7,7 +7,7 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CusHeaderButton from '../components/CusHeaderButton';
 
 const FavoritesScreen = props => {
-	const favMeals = useSelector(state => state.meals.meals);
+	const favMeals = useSelector(state => state.meals.mealsFav);
   return (
     <MealList
 			listData={favMeals}
