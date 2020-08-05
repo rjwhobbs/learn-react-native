@@ -68,10 +68,11 @@ const MealDetailScreen = props => {
 
 MealDetailScreen.navigationOptions = (navigationData) => {
 	const mealId = navigationData.navigation.getParam('mealId');
-	const selectedMeal = MEALS.find(meal => mealId === meal.id);
+	const mealTitle = navigationData.navigation.getParam('mealTitle');
+	// const selectedMeal = MEALS.find(meal => mealId === meal.id);
 
 	return {
-		headerTitle: selectedMeal.title,
+		headerTitle: mealTitle,
 		headerRight: () => (
 			<HeaderButtons HeaderButtonComponent={CusHeaderButton}>
 				{/* Here title is a fall back (Title also used as key)
