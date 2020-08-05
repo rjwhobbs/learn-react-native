@@ -1,13 +1,15 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
-import {CATEGORIES, MEALS} from '../data/dummy-data';
+import {CATEGORIES} from '../data/dummy-data';
 import MealList from '../components/MealList';
 
 const CategoryMealScreen = props => {
 	const catId = props.navigation.getParam('cid');
 	let test = props.navigation.getParam('title'); // This works, not sure why the tutor doesn't do it this way.
 	// indexOf() returns -1 if it can't find the value
-	const displayMeals = MEALS.filter(meal => meal.catId.indexOf(catId) >=0 );
+	const availableMeals = useSelector(state => state.meals.mealsFilter);
+	const displayMeals = availableMeals.filter(meal => meal.catId.indexOf(catId) >=0 );
 	
   return (
 		<MealList

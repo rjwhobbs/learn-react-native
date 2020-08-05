@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import { 
 	View, 
 	Text, 
@@ -24,7 +25,8 @@ const ListItem = (props) => {
 
 const MealDetailScreen = props => {
 	const mealId = props.navigation.getParam('mealId');
-	const selectedMeal = MEALS.find(meal => mealId === meal.id);
+	const availableMeals = useSelector(state => state.meals.meals);
+	const selectedMeal = availableMeals.find(meal => mealId === meal.id);
 
 	return (
 		<ScrollView>
