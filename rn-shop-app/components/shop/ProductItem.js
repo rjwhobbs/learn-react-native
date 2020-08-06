@@ -16,7 +16,7 @@ const ProductItem = (props) => {
 	return (
 		<NativeFeedBack 
 			onPress={props.onViewDetail}
-			useForeground>
+			useForeground /* Wow a comment broke rn, any way this is only on android */ > 
 			<View style={s.shadowCon}>
 				<View style={s.product}>
 					<View style={s.imageCon}>
