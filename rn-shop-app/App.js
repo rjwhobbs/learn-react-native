@@ -6,10 +6,10 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 import productsReducer from './store/reducers/productsReducer';
-// import ShopNavigator from './navigation/ShopNavigator';
+import ShopNavigator from './navigation/ShopNavigator';
 
 const rootReducer = combineReducers({
-  products: productsReducer
+  products: productsReducer // this is your product state 'slice'
 });
 
 const store = createStore(rootReducer);
@@ -17,8 +17,7 @@ const store = createStore(rootReducer);
 export default function App() {
   return (
     <Provider store={store}>
-      {/* <ShopNavigator /> */}
-			<View></View>
+      <ShopNavigator />
     </Provider>
   );
 }

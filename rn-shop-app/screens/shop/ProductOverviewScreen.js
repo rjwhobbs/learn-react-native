@@ -18,6 +18,10 @@ const ProductsOverviewScreen = (props) => {
     />
   );
 }	
+
+ProductsOverviewScreen.navigationOptions = {
+	headerTitle: 'All products'
+}
 	
 const s = StyleSheet.create({	
 });	
