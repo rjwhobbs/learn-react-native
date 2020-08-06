@@ -28,7 +28,8 @@ const ProductsOverviewScreen = (props) => {
 							props.navigation.navigate({
 								routeName: 'ProductDetail',
 								params: {
-									productId: itemData.item.id
+									productId: itemData.item.id,
+									productTitle: itemData.item.title
 								}
 							})
 						}}

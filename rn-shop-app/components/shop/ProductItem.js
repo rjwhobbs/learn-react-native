@@ -4,45 +4,50 @@ import {
 	Text,	
 	View,	
 	Button,	
-	Image	
+	Image,	
+	NativeModules
 } from 'react-native';	
 import RegText from '../styled/RegText';
 const {ps} = require('../../constants/platformSelect');
 import c from '../../constants/colours'
 	
 const ProductItem = (props) => {
-	const NativeButtonFeedBack = ps.NativeButton;	
-	return (	
-		<View style={s.shadowCon}>
-			<View style={s.product}>
-				<View style={s.imageCon}>
-					<Image 
-						style={s.image}
-						source={{uri: props.image}}
-					/>
+	const NativeFeedBack = ps.NativeButton;	
+	return (
+		<NativeFeedBack 
+			onPress={props.onViewDetail}
+			useForeground>
+			<View style={s.shadowCon}>
+				<View style={s.product}>
+					<View style={s.imageCon}>
+						<Image 
+							style={s.image}
+							source={{uri: props.image}}
+						/>
+					</View>
+					<View style={s.details}>
+						<RegText style={s.title}>
+							{props.title}
+						</RegText>
+						<RegText style={s.price}>
+							${props.price.toFixed(2)}
+						</RegText>
+					</View>
+					<View style={s.actions}>
+						<Button 
+							title="View Details"
+							onPress={props.onViewDetail}
+							color={c.primary}
+						/>
+						<Button 
+							title="Add to cart"
+							onPress={props.onAddToCart}
+							color={c.primary}
+						/>
+					</View>
 				</View>
-				<View style={s.details}>
-					<RegText style={s.title}>
-						{props.title}
-					</RegText>
-					<RegText style={s.price}>
-						${props.price.toFixed(2)}
-					</RegText>
-				</View>
-				<View style={s.actions}>
-					<Button 
-						title="View Details"
-						onPress={props.onViewDetail}
-						color={c.primary}
-					/>
-					<Button 
-						title="Add to cart"
-						onPress={props.onAddToCart}
-						color={c.primary}
-					/>
-				</View>
-			</View>
-		</View>	
+			</View>	
+		</NativeFeedBack>	
 	);	
 }	
 	
