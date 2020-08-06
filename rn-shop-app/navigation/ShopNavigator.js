@@ -10,12 +10,12 @@ const defaultStackOptions = {
 	headerStyle: {
 		backgroundColor: ps.headerbg
 	},
-	// headerTitleStyle: {
-	// 	fontFamily: 'open-sans-bold'
-	// },
-	// headerBackTitleStyle: {
-	// 	fontFamily: 'open-sans'
-	// },
+	headerTitleStyle: {
+		fontFamily: 'open-sans-bold'
+	},
+	headerBackTitleStyle: { // native back button style
+		fontFamily: 'open-sans'
+	},
 	headerTintColor: ps.headerText, // the actual header text
 	cardStyle: {
 		backgroundColor: "#fff"

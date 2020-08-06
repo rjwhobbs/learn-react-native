@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import {	
 	StyleSheet,	
 	Text,	
-	View,	
 } from 'react-native';	
 	
-const RegText = (props) => {	
+const BoldText = (props) => {	
 	return (	
 		<Text style={{...s.regText, ...props.style}}>
 			{props.children}	
@@ -15,8 +14,8 @@ const RegText = (props) => {
 	
 const s = StyleSheet.create({
 	regText: {
-		fontFamily: 'open-sans',
+		fontFamily: 'open-sans-bold',
 	}
 });	
 	
-export default RegText;
+export default BoldText;
