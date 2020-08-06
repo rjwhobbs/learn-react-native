@@ -2,6 +2,8 @@ import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from  'react-navigation-stack';
 import ProductOverviewScreen from '../screens/shop/ProductOverviewScreen';
+import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
+
 const {ps} = require('../constants/platformSelect');
 
 const defaultStackOptions = {

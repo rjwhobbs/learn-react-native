@@ -5,11 +5,17 @@ import {
 	View,	
 	Button,	
 	TextInput,	
+	Image,
+	ScrollView
 } from 'react-native';	
+import RegText from '../../components/styled/RegText';
 	
 const ProductDetailScreen = (props) => {	
 	return (	
-		<View>	
+		<View>
+			<RegText>
+				Product detail screen
+			</RegText>	
 		</View>	
 	);	
 }	
