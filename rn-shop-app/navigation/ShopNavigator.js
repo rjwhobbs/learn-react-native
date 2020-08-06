@@ -25,6 +25,9 @@ const defaultStackOptions = {
 const ProductsNavigator = createStackNavigator({
 		ProductOverview: {
 			screen: ProductOverviewScreen
+		},
+		ProductDetail: {
+			screen: ProductDetailScreen
 		}
 }, {
 	defaultNavigationOptions: defaultStackOptions
