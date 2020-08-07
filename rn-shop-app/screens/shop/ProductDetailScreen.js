@@ -9,14 +9,17 @@ import {
 	ScrollView
 } from 'react-native';	
 import RegText from '../../components/styled/RegText';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import c from '../../constants/colours';
-	
+import * as cartActions from '../../store/actions/cartActions';
+
+
 const ProductDetailScreen = (props) => {	
 	const productId = props.navigation.getParam('productId');
 	const selectedProduct = useSelector(
 		state => state.products.availableProducts.find(prod => prod.id === productId)
 	);
+	const dispatch = useDispatch();
 
 	return (	
 		<ScrollView>
@@ -28,7 +31,9 @@ const ProductDetailScreen = (props) => {
 				<Button
 					color={c.primary}
 					title="Add to cart"
-					onPress={() => {}}
+					onPress={() => {
+						dispatch(cartActions.addToCart(selectedProduct));
+					}}
 				/>
 			</View>
 			<RegText style={s.price}>
